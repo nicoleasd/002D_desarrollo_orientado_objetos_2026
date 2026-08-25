@@ -5,9 +5,8 @@ public class Main {
         showMenu();
     }
 
+    static void showMenu() {
 
-    static void showMenu(){
-        
         Scanner scanner = new Scanner(System.in);
 
         Character player_character = new Character();
@@ -26,49 +25,63 @@ public class Main {
 
             String user_option = scanner.nextLine();
 
+            switch (user_option) {
+                case "1":
+                    createCharacter(player_character, scanner);
 
-        switch (user_option) {
-            case "1": 
-            System.out.println("Creating Character");
-            
-            System.out.println("Enter a nickname: ");    
-            player_character.name = scanner.nextLine();
+                    break;
 
-            System.out.println("Add Hp: ");
-            player_character.asignarVida(Integer.parseInt(scanner.nextLine()));
+                case "2":
+                    verCharacter(player_character);
+                    break;
 
-            System.out.println("Add Magic Points to ur character: ");
-            player_character.magic_points = Integer.parseInt(scanner.nextLine());
-        
-            System.out.println("Enter an age: ");
-            player_character.validarEdad(Integer.parseInt(scanner.nextLine()));
-                break;
+                case "3":
+                    System.out.println("gracias, chao");
+                    flag_menu = false;
+                    break;
 
-
-            case "2":
-                System.out.println("ver persnaje");
-
-                System.out.println("NAME: " + player_character.name);
-                System.out.println("HP: " + player_character.mostrarVida());
-                System.out.println("MP: " + player_character.magic_points);
-                System.out.println("AGE: " + player_character.mostrarEdad());
-
-                break;
-        
-            case "3":
-                System.out.println("gracias, chao");
-                flag_menu = false;
-                break;
-
-            default:
-                System.out.println("Invalid Option");
-                break;
+                default:
+                    System.out.println("Invalid Option");
+                    break;
+            }
         }
+    }
+
+    static void createCharacter(Character player_character, Scanner scanner) {
+
+        Enderman pepe = new Enderman();
+        Creeper creeper = new Creeper();
+        Zombie zombie = new Zombie();
+        Dragon dragon = new Dragon();
+
+        
 
 
-        } 
+        System.out.println("Creating Character");
 
+        System.out.println("Enter a nickname: ");
+        player_character.validarNombre(scanner.nextLine());
 
+        System.out.println("Add Hp: ");
+        player_character.asignarVida(Integer.parseInt(scanner.nextLine()));
+
+        System.out.println("Add Magic Points to ur character: ");
+        player_character.magic_points = Integer.parseInt(scanner.nextLine());
+
+        System.out.println("Enter an age: ");
+        player_character.validarEdad(Integer.parseInt(scanner.nextLine()));
+    }
+
+    static void verCharacter(Character player_character) {
+        System.out.println("ver persnaje");
+
+        System.out.println("NAME: " + player_character.mostrarNombre());
+        System.out.println("HP: " + player_character.mostrarVida());
+        System.out.println("MP: " + player_character.magic_points);
+        System.out.println("AGE: " + player_character.mostrarEdad());
     }
 
 }
+
+
+//implementar un menu en la creacion del personaje que permita elegir el personaje que quiero crear

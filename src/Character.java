@@ -1,36 +1,63 @@
 public class Character {
-    String name;
+    private String name;
     private int hit_points;
     int magic_points;
     boolean is_ally;
     private int age;
 
+    public void validarNombre(String name) {
+        name.toUpperCase();
+        switch (name) {
+            case "WEON":
+                System.out.println("Invalid");
+                break;
 
-    public void validarEdad(int age){
-        if (age > 0){
+            case "SOPENKO":
+                System.out.println("Invalid");
+                break;
+
+            case "ESTUPIDO":
+                System.out.println("Invalid");
+                break;
+            
+
+            default:
+                this.name = name;
+                break;
+        }
+    }
+
+    public String mostrarNombre() {
+        return this.name;
+    }
+    // -----------------------------------------------
+
+    public void validarEdad(int age) {
+        if (age > 0) {
             System.out.println("EL programa lo dejo en 0");
             this.age = 0;
-        }else{
+        } else {
             this.age = age;
         }
     }
-       
-    public int mostrarEdad(){
-        return this.age ;
+
+    public int mostrarEdad() {
+        return this.age;
     }
-//----------------------------------------------
-    public void asignarVida(int hit_points){
-        if (hit_points < 0 ) {
+
+    // ----------------------------------------------
+    public void asignarVida(int hit_points) {
+        if (hit_points < 0) {
             this.hit_points = 0;
-        
-        }else{
+
+        } else {
             this.hit_points = hit_points;
         }
     }
-    public int mostrarVida(){
+
+    public int mostrarVida() {
         return this.hit_points;
     }
-//--------------------------------------------
-        //agregar validaciones de nombres, para qno sean insultos
-    }
-
+    // --------------------------------------------
+   
+}
