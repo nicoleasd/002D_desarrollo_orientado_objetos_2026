@@ -5,6 +5,11 @@ public class Character {
     boolean is_ally;
     private int age;
 
+
+    public void atacar(){
+        System.out.println("Atacando");
+    }
+
     public void validarNombre(String name) {
         name.toUpperCase();
         switch (name) {

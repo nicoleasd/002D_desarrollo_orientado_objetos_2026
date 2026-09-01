@@ -20,6 +20,7 @@ public class Main {
             System.out.println("2. Inspect Character");
             System.out.println("3. Visualize Character");
             System.out.println("3. Exit");
+            System.out.println("4. testing");
 
             System.out.println("choose an option");
 
@@ -40,12 +41,27 @@ public class Main {
                     flag_menu = false;
                     break;
 
+                case "4":
+                    testeandoCositas();
+                    break;
+
                 default:
                     System.out.println("Invalid Option");
                     break;
             }
         }
     }
+
+    static void testeandoCositas(){
+        System.out.println("atacando");
+        Character zombie = new Zombie();
+        zombie.atacar();
+        
+        
+    }
+
+
+
 
     static void createCharacter(Character player_character, Scanner scanner) {
 
