@@ -37,9 +37,11 @@ public class Tienda {
                     break;
 
                 case "3":
+                    buscarProductoPorNombre();
                     break;
 
                 case "4":
+                    venderProducto();
                     break;
 
                 case "5":
@@ -52,6 +54,7 @@ public class Tienda {
                 
                     
                 case "7":
+                    agregarDatosDePrueba();
                     break;
 
             
@@ -76,7 +79,7 @@ public class Tienda {
         System.out.println("1. Físico");
         System.out.println("2. Digital");
         System.out.println("3. Volver al menú");
-        System.out.println("Selecciones una opción:");
+        System.out.println("Seleccione una opción:");
 
         String opcion_submenu = sc.nextLine();
 
@@ -153,10 +156,68 @@ public class Tienda {
 
     }
 
-    static void listarInventario(){
-        System.out.println("-_-_-_- INVENTARIO DE JUEGOS -_-_-_-");
-        
+    static void listarInventario(){                                 //El tipo de dato de cada elemento dentro de la lista
+        System.out.println("-_-_-_- INVENTARIO DE JUEGOS -_-_-_-"); //El nombre de variable temporal que tú eliges
+        for (ProductoFisico juego_fisico : lista_juegos_fisicos){   //La lista completa que vas a recorrer
+            System.out.println(juego_fisico.mostrarInfo());
+
+        for (ProductoDigital juego_digital : lista_juegos_digitales){
+            System.out.println(juego_digital.mostrarInfo());
+            }
+        }
+    }
+
+    static void buscarProductoPorNombre(){
+        System.out.println("Ingrese nombre del juego: ");
+        String nombre_buscado = sc.nextLine();
+
+        for (ProductoFisico juego_fisico : lista_juegos_fisicos){           //Pide el texto a buscar.
+            if (juego_fisico.getNombre().contains(nombre_buscado)) {        //Recorre todos los productos físicos, y por cada uno pregunta si su nombre contiene ese texto — si sí, lo imprime.
+                System.out.println(juego_fisico.mostrarInfo());             //
+            }
+        }
+
+        for (ProductoDigital juego_digital : lista_juegos_digitales){       //Hace lo mismo con todos los productos digitales.
+            if (juego_digital.getNombre().contains(nombre_buscado)) {
+                System.out.println(juego_digital.mostrarInfo());
+            }
+        }
+
+    }
+
+    static void venderProducto(){
+        System.out.println(" ***** VENDER PRODUCTO ***** ");
+        System.out.println("1. Producto físico");
+        System.out.println("2. Producto digital");
+        System.out.println("Seleccione una opción: ");
+
+        String opcion_elegida = sc.nextLine();
+
+
+
     }
 
 
+
+
+
+    static void agregarDatosDePrueba() {
+        System.out.println("Agregando juegos fisicos");
+
+        lista_juegos_fisicos.add(new ProductoFisico("Pokémon Perla", 27000, 20, 3000));
+
+        lista_juegos_fisicos.add(new ProductoFisico("Pokémon Diamante", 27000, 14, 3000));
+
+        lista_juegos_fisicos.add(new ProductoFisico("GTA V", 32000, 26, 3000));
+
+        lista_juegos_fisicos.add(new ProductoFisico("Majoras Mask", 150000, 2, 3000));
+
+        lista_juegos_fisicos.add(new ProductoFisico("PayDay2", 6000, 6, 3000));
+
+        lista_juegos_digitales.add(new ProductoDigital("Halo", 9000, 20, 45, "PC"));
+
+        lista_juegos_digitales.add(new ProductoDigital("Balatro", 12000, 46, 5, "PC"));
+
+        System.out.println("********DATOS DE PRUEBA CARGADOS******");
+    }
 }
