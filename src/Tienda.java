@@ -45,6 +45,7 @@ public class Tienda {
                     break;
 
                 case "5":
+                    resumenInventario();
                     break;
 
                 case "6":
@@ -207,19 +208,103 @@ public class Tienda {
         }
         
         for (int i = 0; i < lista_juegos_fisicos.size(); i++){
-            ProductoFisico juego = lista_juegos_fisicos.get(i);
+            ProductoFisico juego = lista_juegos_fisicos.get(i); //métodod de arraylist que retorna el elemento en la posicion que le das en los parentesis
             System.out.println((i + 1) + ". " + juego.getNombre() + " | Stock: " + juego.getStock());
             System.out.println("--------------------------------------");
         }
 
+        System.out.println("Ingrese el número que quiere vender: ");
+        int numero_a_vender = Integer.parseInt(sc.nextLine());
+
+        if (numero_a_vender < 1 || numero_a_vender > lista_juegos_fisicos.size()) {
+            System.out.println("Número inválido");
+            return ;
+        }
+
+    ProductoFisico juego = lista_juegos_fisicos.get(numero_a_vender - 1);
+
+        System.out.println("Ingrese la cantidad a vender: ");
+        int cantidad_a_vender = Integer.parseInt(sc.nextLine());
+
+        if (cantidad_a_vender <= 0) {
+            System.out.println("La cantidad debe ser mayor a 0.");
+            return;
+        }
+
+        if (cantidad_a_vender > juego.getStock()) {
+            System.out.println("Stock insuficiente.");
+            return;
+        }
+
+        juego.setStock(juego.getStock() - cantidad_a_vender);
+        int total_compra = juego.calcularPrecioFinal() * cantidad_a_vender;
+        System.out.println("Venta realizada. Total: $" + total_compra);
+
     }
+
 
     static void venderProductoDigital(){
+
+        if (lista_juegos_digitales.isEmpty()) {
+            System.out.println("No hay juegos digitales registrados para vender.");
+            return;
+        }
+
+        for (int i = 0; i < lista_juegos_digitales.size(); i++){
+            ProductoDigital juego = lista_juegos_digitales.get(i);
+
+            System.out.println((i + 1) + ". " + juego.getNombre() + " | Stock:" + juego.getStock());
+        }
+
+        System.out.println("Ingrese número de producto a vender." );
+        int numero = Integer.parseInt(sc.nextLine());
+
+        if (numero < 1 || numero > lista_juegos_digitales.size()) {
+            System.out.println("Número inválido.");
+            return;
+        }
+
+        ProductoDigital juego = lista_juegos_digitales.get(numero - 1);
+
+        System.out.println("Ingrese la cantidad a vender.");
+        int cantidad = Integer.parseInt(sc.nextLine());
+
+        if (cantidad <=0) {
+            System.out.println("La cantidad debe ser mayor a 0.");
+            return;
+        }
+
+        if (cantidad > juego.getStock()) {
+            System.out.println("Stock insuficiente.");
+            return;
+        }
         
+        juego.setStock(juego.getStock() - cantidad);
+        int total_compra = juego.calcularPrecioFinal() * cantidad;
+        System.out.println("Venta realizada. Total: $" + total_compra);
+
     }
     
+    static void resumenInventario(){
+        System.out.println("----------RESUMEN DEL INVENTARIO ----------");
 
+        int totalProductos = lista_juegos_fisicos.size() + lista_juegos_digitales.size() ;
+        long valorTotal = 0;
 
+        for (ProductoFisico juego : lista_juegos_fisicos){
+            valorTotal = valorTotal + (long) juego.calcularPrecioFinal() * juego.getStock();
+        }
+
+        for (ProductoDigital juego : lista_juegos_digitales){
+            valorTotal  = valorTotal + (long) juego.calcularPrecioFinal() * juego.getStock();
+        }
+
+        System.out.println("Total productos: " + totalProductos);
+        System.out.println("Productos Físicos: " + lista_juegos_fisicos.size());
+        System.out.println("Productos Digitales: " + lista_juegos_digitales.size());
+        System.out.println("Valor total del Inventario: " + valorTotal);
+
+    }
 
 
     static void agregarDatosDePrueba() {
